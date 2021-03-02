@@ -39,9 +39,9 @@ for i,html_docs in enumerate(divs):
             key = i.a["href"]
             print("key",key)
             prifex = "https://www.constitutionofindia.net/"
-            value = requests.get(prifex+key)
-            print("value",value.text)
-            parts[key]=value
+    #         # value = requests.get(prifex+key)
+    #         # print("value",value.text)
+            parts[key]=1
 
     if i==1:
         c = html_docs.find_all("div",class_="read-more")
@@ -49,19 +49,49 @@ for i,html_docs in enumerate(divs):
             key = i.a["href"]
             print("key",key)
             prifex = "https://www.constitutionofindia.net/"
-            value = requests.get(prifex+key)
-            print("value",value.text)
-            parts[key]=value
-    
- 
-# divs = soup.find_all("div", class_ = "read-more")
+            # value = requests.get(prifex+key)
+            # print("value",value.text)
+            schedules[key]=1
+            
+import csv           
+with open('task_1.csv','a',newline='') as csvfile:
+   writer = csv.DictWriter(csvfile, fieldnames=['part name','article name'])           
+   for key in parts:
+       n=key.split("/")
+       # print(n[2])
+       d = {'part name': n[2], 'article name': "",}
+       writer.writerow(d)
+
+
+# with open('task_2.csv','a',newline='') as csvfile:
+#    writer = csv.DictWriter(csvfile, fieldnames=['schedules name','article name'])           
+#    for key in schedules:
+#         n=key.split("/")
+#         #    print(n[2])
+#         d = {'schedules name': n[2], 'article name': "",}
+#         writer.writerow(d)
+#         z =n[2]
+#         z=z.replace("articles_","")
+#         z=z.replace("and","")
+#         z=z.replace(",","")
+#         z=z.replace("___",")___")
+#         y = z.split('___')
+#         print("y= ",y)
+
+#         for i in y:
+#             x=i.split('__')
+#             # print("x= ",x)
+#             for j in x:
+#                 # print("j= ",j)
+#                 w=j.replace("_","(")
+                
+#                 print("w=",w)
+#                 d = {'schedules name': w, 'article name': "",}
+#                 writer.writerow(d)
+                
 
 
 
-# a_tags =soup.find_all("href", class_ = "read-more")
 
-# l1 = soup.find_all('div')
-# print(len(l1))
 
-# l2 = soup.find_all('a')
-# print(len(l2))
+
